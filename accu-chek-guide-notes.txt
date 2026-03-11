@@ -1,0 +1,186 @@
+Primary Service (service0006)
+	00001808-0000-1000-8000-00805f9b34fb
+	Glucose
+        Characteristic (char0007) (char value handle = 0x0008)
+	        00002a18-0000-1000-8000-00805f9b34fb
+	        Glucose Measurement
+                Descriptor (desc0009)
+	                00002902-0000-1000-8000-00805f9b34fb
+	                Client Characteristic Configuration
+        Characteristic (char000a) (char value handle = 0x000b)
+	        00002a34-0000-1000-8000-00805f9b34fb
+	        Glucose Measurement Context
+                Descriptor (desc000c)
+	                00002902-0000-1000-8000-00805f9b34fb
+	                Client Characteristic Configuration
+        Characteristic (char000d) (char value handle = 0x000e)
+	        00002a51-0000-1000-8000-00805f9b34fb
+	        Glucose Feature
+        Characteristic (char000f) (char value handle = 0x0010)
+	        00002a52-0000-1000-8000-00805f9b34fb
+	        Record Access Control Point
+                Descriptor (desc0011)
+	                00002902-0000-1000-8000-00805f9b34fb
+	                Client Characteristic Configuration
+        Characteristic (char0012) (char value handle = 0x0013)
+	        00002a08-0000-1000-8000-00805f9b34fb
+	        Date Time
+Primary Service (service0014)
+	0000180a-0000-1000-8000-00805f9b34fb
+	Device Information
+        Characteristic (char0015) (char value handle = 0x0016)
+	        00002a23-0000-1000-8000-00805f9b34fb
+	        System ID
+        Characteristic (char0017) (char value handle = 0x0018)
+	        00002a24-0000-1000-8000-00805f9b34fb
+	        Model Number String
+        Characteristic (char0019) (char value handle = 0x001a)
+	        00002a25-0000-1000-8000-00805f9b34fb
+	        Serial Number String
+        Characteristic (char001b) (char value handle = 0x001c)
+	        00002a26-0000-1000-8000-00805f9b34fb
+	        Firmware Revision String
+        Characteristic (char001d) (char value handle = 0x001e)
+	        00002a29-0000-1000-8000-00805f9b34fb
+	        Manufacturer Name String
+        Characteristic (char001f) (char value handle = 0x0020)
+	        00002a2a-0000-1000-8000-00805f9b34fb
+	        IEEE 11073-20601 Regulatory Cert. Data List
+        Characteristic (char0021) (char value handle = 0x0022)
+	        00002a50-0000-1000-8000-00805f9b34fb
+	        PnP ID
+Primary Service (service0023)
+	00000000-0000-1000-1000-000000000000
+	Vendor specific
+        Characteristic (char0024) (char value handle = 0x0025)
+	        00000000-0000-1000-1000-000000000001
+	        Vendor specific
+                Descriptor (desc0026)
+	                00002902-0000-1000-8000-00805f9b34fb
+	                Client Characteristic Configuration
+        Characteristic (char0027) (char value handle = 0x0028)
+	        00000000-0000-1000-1000-000000000002
+	        Vendor specific
+                Descriptor (desc0029)
+	                00002902-0000-1000-8000-00805f9b34fb
+	                Client Characteristic Configuration
+        Characteristic (char002a) (char value handle = 0x002b)
+	        00002a52-0000-1000-8000-00805f9b34fb
+	        Record Access Control Point
+                Descriptor (desc002c)
+	                00002902-0000-1000-8000-00805f9b34fb
+	                Client Characteristic Configuration	                
+(?????)
+    0000180a-0000-1000-8000-00805f9b34fb
+    Device Information
+        Characteristic (char0002) (char value handle = 0x0003)
+            00002a00-0000-1000-8000-00805f9b34fb
+            Device Name
+        Charasteristic (char0004) (char value handle = 0x0005)        
+            00002a01-0000-1000-8000-00805f9b34fb
+            Appearance
+
+------------------------------------------------------------------------------
+
+$ python ble_scan_devices.py
+meter+11502082 - 14:42:FC:FB:E2:81
+
+$ python ble_list_characteristics.py
+00001800-0000-1000-8000-00805f9b34fb
+  char: 00002a00-0000-1000-8000-00805f9b34fb handle: 2
+  char: 00002a01-0000-1000-8000-00805f9b34fb handle: 4
+00001808-0000-1000-8000-00805f9b34fb
+  char: 00002a18-0000-1000-8000-00805f9b34fb handle: 7
+  char: 00002a34-0000-1000-8000-00805f9b34fb handle: 10
+  char: 00002a51-0000-1000-8000-00805f9b34fb handle: 13
+  char: 00002a52-0000-1000-8000-00805f9b34fb handle: 15
+  char: 00002a08-0000-1000-8000-00805f9b34fb handle: 18
+0000180a-0000-1000-8000-00805f9b34fb
+  char: 00002a23-0000-1000-8000-00805f9b34fb handle: 21
+  char: 00002a24-0000-1000-8000-00805f9b34fb handle: 23
+  char: 00002a25-0000-1000-8000-00805f9b34fb handle: 25
+  char: 00002a26-0000-1000-8000-00805f9b34fb handle: 27
+  char: 00002a29-0000-1000-8000-00805f9b34fb handle: 29
+  char: 00002a2a-0000-1000-8000-00805f9b34fb handle: 31
+  char: 00002a50-0000-1000-8000-00805f9b34fb handle: 33
+00000000-0000-1000-1000-000000000000
+  char: 00000000-0000-1000-1000-000000000001 handle: 36
+  char: 00000000-0000-1000-1000-000000000002 handle: 39
+  char: 00002a52-0000-1000-8000-00805f9b34fb handle: 42
+
+$ python gatt_glucose_reader.py
+Connected
+Requesting all records...
+Glucose Measurement: bytearray(b'\x1b\x04\x00\xe4\x07\x08\x02\x10\x08\x10J\xff\x02\xb1\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\x04\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\x05\x00\xe4\x07\x08\x17\x02\x0f\x05J\xff\xe5\xb0\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\x05\x00\x01')
+Glucose Measurement: bytearray(b'\x0b\x06\x00\xe4\x07\x08\x17\x10\x14\x18J\xff%\xb1\xf8\x00\x00')
+Glucose Measurement: bytearray(b'\x1b\x07\x00\xe4\x07\t\x18\x11\x181J\xff\xc9\xb0\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\x07\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\x08\x00\xe4\x07\n\x04\x014\x06J\xff\xbb\xb0\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\x08\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\t\x00\xe4\x07\x0b\x01\x01\x05\x18J\xffC\xb1\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\t\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\n\x00\xe4\x07\x0c\x14\x02\x00\nJ\xff\xfa\xb0\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\n\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\x0b\x00\xe4\x07\x0c\x14\x0f8"J\xff\xf6\xb0\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\x0b\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\x0c\x00\xe4\x07\x0c\x18\x10\x065J\xff\xee\xb0\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\x0c\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\r\x00\xe4\x07\x0c\x19\x02\x140J\xff\xcb\xb0\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\r\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\x0e\x00\xe4\x07\x0c\x1a\x00\x15(J\xff9\xb1\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\x0e\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\x0f\x00\xe4\x07\x0c\x1a\x10\x1f\x00J\xff\x90\xb1\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\x0f\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\x10\x00\xe4\x07\x0c\x1b\x10%%J\xff\x8c\xb1\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\x10\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\x11\x00\xe5\x07\x02\r\x10\x0e\x04J\xffB\xb1\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\x11\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\x12\x00\xe5\x07\x02\x0e\x01&\x02J\xff\r\xb1\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\x12\x00\x01')
+Glucose Measurement: bytearray(b'\x1b\x13\x00\xe5\x07\x02\x0e\x10&\tJ\xffG\xb1\xf8\x00\x00')
+Glucose Context: bytearray(b'\x02\x13\x00\x01')
+RACP response: bytearray(b'\x06\x00\x01\x01')
+
+$ python gatt_glucose_bleak.py
+Connected: True
+Handles encontrados:
+GM: 7
+CTX: 10
+RACP: 15
+Glucose: bytearray(b'\x1b\x04\x00\xe4\x07\x08\x02\x10\x08\x10J\xff\x02\xb1\xf8\x00\x00')
+Glucose: bytearray(b'\x02\x04\x00\x01')
+Glucose: bytearray(b'\x1b\x05\x00\xe4\x07\x08\x17\x02\x0f\x05J\xff\xe5\xb0\xf8\x00\x00')
+Glucose: bytearray(b'\x02\x05\x00\x01')
+Glucose: bytearray(b'\x0b\x06\x00\xe4\x07\x08\x17\x10\x14\x18J\xff%\xb1\xf8\x00\x00')
+Glucose: bytearray(b'\x1b\x07\x00\xe4\x07\t\x18\x11\x181J\xff\xc9\xb0\xf8\x00\x00')
+Glucose: bytearray(b'\x02\x07\x00\x01')
+Glucose: bytearray(b'\x1b\x08\x00\xe4\x07\n\x04\x014\x06J\xff\xbb\xb0\xf8\x00\x00')
+Glucose: bytearray(b'\x02\x08\x00\x01')
+Glucose: bytearray(b'\x1b\t\x00\xe4\x07\x0b\x01\x01\x05\x18J\xffC\xb1\xf8\x00\x00')
+Glucose: bytearray(b'\x02\t\x00\x01')
+Glucose: bytearray(b'\x1b\n\x00\xe4\x07\x0c\x14\x02\x00\nJ\xff\xfa\xb0\xf8\x00\x00')
+Glucose: bytearray(b'\x02\n\x00\x01')
+Glucose: bytearray(b'\x1b\x0b\x00\xe4\x07\x0c\x14\x0f8"J\xff\xf6\xb0\xf8\x00\x00')
+Glucose: bytearray(b'\x02\x0b\x00\x01')
+Glucose: bytearray(b'\x1b\x0c\x00\xe4\x07\x0c\x18\x10\x065J\xff\xee\xb0\xf8\x00\x00')
+Glucose: bytearray(b'\x02\x0c\x00\x01')
+Glucose: bytearray(b'\x1b\r\x00\xe4\x07\x0c\x19\x02\x140J\xff\xcb\xb0\xf8\x00\x00')
+Glucose: bytearray(b'\x02\r\x00\x01')
+Glucose: bytearray(b'\x1b\x0e\x00\xe4\x07\x0c\x1a\x00\x15(J\xff9\xb1\xf8\x00\x00')
+Glucose: bytearray(b'\x02\x0e\x00\x01')
+Glucose: bytearray(b'\x1b\x0f\x00\xe4\x07\x0c\x1a\x10\x1f\x00J\xff\x90\xb1\xf8\x00\x00')
+Glucose: bytearray(b'\x02\x0f\x00\x01')
+Glucose: bytearray(b'\x1b\x10\x00\xe4\x07\x0c\x1b\x10%%J\xff\x8c\xb1\xf8\x00\x00')
+Glucose: bytearray(b'\x02\x10\x00\x01')
+Glucose: bytearray(b'\x1b\x11\x00\xe5\x07\x02\r\x10\x0e\x04J\xffB\xb1\xf8\x00\x00')
+Glucose: bytearray(b'\x02\x11\x00\x01')
+Glucose: bytearray(b'\x1b\x12\x00\xe5\x07\x02\x0e\x01&\x02J\xff\r\xb1\xf8\x00\x00')
+Glucose: bytearray(b'\x02\x12\x00\x01')
+Glucose: bytearray(b'\x1b\x13\x00\xe5\x07\x02\x0e\x10&\tJ\xffG\xb1\xf8\x00\x00')
+Glucose: bytearray(b'\x02\x13\x00\x01')
+All records received
+RACP: bytearray(b'\x06\x00\x01\x01')
+Download complete
