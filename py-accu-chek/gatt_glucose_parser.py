@@ -235,9 +235,9 @@ gm_metadata = {
     "minutes": ("Minutes", 'B', None, 0, 0), #uint8
     "seconds": ("Seconds", 'B', None, 0, 0), #uint8
     "time_offset": ("Time Offset (min)", 'h', None, 0b0001, 0b0001), #int16
+    "glucose_mg_dL": ("Glucose Concentration (mg/dL)", 'H', lambda x: decode_sfloat(x) * 1e5, 0b0110, 0b0010), #sfloat
+    "glucose_mol_L": ("Glucose Concentration (mo/L)", 'H', lambda x: decode_sfloat(x) * 1e3, 0b0110, 0b0110), #sfloat
     "location": ("Type-Sample Location", 'B', lambda x: (type_location_dict.get(x & 0x0F, "-"), sample_location_dict.get(x >> 4, "-")), 0b0010, 0b0010), #2*nibble
-    "glucose_mg_dL": ("Glucose Concentration (mg/dL)", 'H', lambda x: decode_sfloat(x), 0b0110, 0b0010), #sfloat
-    "glucose_mol_L": ("Glucose Concentration (mol/L)", 'H', lambda x: decode_sfloat(x), 0b0110, 0b0110), #sfloat
     "sensor_status": ("Sensor Status Annunciation", 'H', lambda x: _parse_bit_list(x, sensor_status_annunciation_dict), 0b1000, 0b1000), #16bits
 }
 
@@ -315,7 +315,7 @@ def parse_gatt_message(metadata, data):
             values -> dictionary with parsed values
             labels -> dictionary with human-readable labels
     """
-    format_struct = '=' + ''.join([v[1] for v in metadata.values()])
+    format_struct = '<' + ''.join([v[1] for v in metadata.values()])
     expected_size = calcsize(format_struct)
     if len(data) < expected_size:
         raise ValueError("Packet too short")
@@ -362,7 +362,7 @@ def print_parsed_data(values, labels, indentation=0):
 if __name__ == "__main__":
     
     print("Glucose Measurement")
-    data = bytearray(b'\x1b\x05\x00\xe4\x07\x07\x05\x01\x25\x36\x3c\x00\x59\xb1\xf8\x00\x00')
+    data = bytearray(b'\x1b\x07\x00\xe4\x07\x07\x05\x01\x25\x36\x3c\x00\x59\xb1\xf8\x00\x00')
     print_parsed_data(*parse_gatt_glucose_message(gm_metadata, data), indentation=1)
 
     print('Glucose Measurement Context')
